@@ -3,11 +3,12 @@ package com.xuandq.androidtouchpad.model;
 import java.io.Serializable;
 
 public class MouseData implements Serializable {
-    private int x = 0;
+    private int x = 0; // tinh bang px
     private int y = 0;
-    private int wheeel = 0;
+    private int wheeel = 0; // theo y axis
     private boolean leftClick = false;
     private boolean rightClick = false;
+    // press - move = release
 
     public MouseData(int x, int y, int wheeel, boolean leftClick, boolean rightClick) {
         this.x = x;

@@ -9,18 +9,19 @@ import android.widget.Toast
 import com.xuandq.androidtouchpad.R
 import com.xuandq.androidtouchpad.networking.Client
 import com.xuandq.androidtouchpad.networking.MakeConnectionListener
-import kotlinx.android.synthetic.main.activity_main.*
+import com.xuandq.androidtouchpad.ui.main.MainActivity
+import kotlinx.android.synthetic.main.activity_connect.*
 import java.lang.Exception
 import java.net.UnknownHostException
 
-class MainActivity : AppCompatActivity() {
+class ConnectActivity : AppCompatActivity() {
 
     private var isLoading = false
     val TAG = "aaa"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_connect)
 
         btn_connect_connection.setOnClickListener {
             if (!isLoading) {
@@ -37,19 +38,19 @@ class MainActivity : AppCompatActivity() {
 
         Client.makeConnection(host, port, object : MakeConnectionListener {
             override fun onSuccess(client: Client?) {
-                Toast.makeText(this@MainActivity, "Successful", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ConnectActivity, "Successful", Toast.LENGTH_SHORT).show()
                 pb_connection.visibility = View.INVISIBLE
                 isLoading = false
-                startActivity(Intent(this@MainActivity, TouchpadActivity::class.java))
+                startActivity(Intent(this@ConnectActivity, MainActivity::class.java))
             }
 
             override fun onError(e: Exception?) {
                 if (e is UnknownHostException) {
-                    Toast.makeText(this@MainActivity, "IP Adress incorrect !", Toast.LENGTH_SHORT)
+                    Toast.makeText(this@ConnectActivity, "IP Adress incorrect !", Toast.LENGTH_SHORT)
                         .show()
                 } else {
-                    Toast.makeText(this@MainActivity, "Some error", Toast.LENGTH_SHORT).show()
-                    Log.e(TAG, "onError: ${e?.printStackTrace()}")
+                    Toast.makeText(this@ConnectActivity, "Some error", Toast.LENGTH_SHORT).show()
+                    e?.printStackTrace()
                 }
                 pb_connection.visibility = View.INVISIBLE
                 isLoading = false

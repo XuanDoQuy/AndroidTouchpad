@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/edt_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Click here"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_marginStart="@dimen/_16sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send"
+        android:textAllCaps="false"
+        app:layout_constraintTop_toTopOf="@id/edt_input"
+        app:layout_constraintStart_toEndOf="@id/edt_input"
+        app:layout_constraintBottom_toBottomOf="@id/edt_input"
+        android:layout_marginStart="@dimen/_16sdp"
+        />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/view_spec_key"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        app:layout_constraintTop_toBottomOf="@id/edt_input">
+
+        <Button
+            android:id="@+id/key_copy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Copy"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toStartOf="@+id/key_paste"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/key_paste"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Paste"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toStartOf="@+id/key_page_up"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/key_copy"
+            app:layout_constraintTop_toTopOf="@id/key_copy" />
+
+        <Button
+            android:id="@+id/key_page_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pg Up"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toStartOf="@+id/key_page_down"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/key_paste"
+            app:layout_constraintTop_toTopOf="@id/key_paste" />
+
+        <Button
+            android:id="@+id/key_page_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pg Dn"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/key_page_up"
+            app:layout_constraintTop_toTopOf="@id/key_page_up" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
