@@ -24,7 +24,7 @@ public class Client {
     private static final String TAG = "xClient";
     private Socket socket;
     private DataOutputStream outputStream;
-    private DataInputStream inputStream;
+    public DataInputStream inputStream;
     private static Client instance;
 
     private Client(Socket socket, DataOutputStream outputStream, DataInputStream inputStream) {
@@ -42,11 +42,9 @@ public class Client {
                 try {
                     Log.d(TAG, "doInBackground: 1 ");
                     Socket s = new Socket(host, port);
-                    Log.d(TAG, "doInBackground: 2");
                     DataOutputStream out = new DataOutputStream(s.getOutputStream());
-                    Log.d(TAG, "doInBackground: 3");
                     DataInputStream in = new DataInputStream(s.getInputStream());
-                    Log.d(TAG, "doInBackground: 4");
+                    Log.d(TAG, "doInBackground: 2");
                     return new AsyncTaskResult<>(new Client(s, out, in));
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -124,8 +122,9 @@ public class Client {
     }
 
     public void sendDataToServer(final Object object){
-        @SuppressLint("StaticFieldLeak")
 
+
+        @SuppressLint("StaticFieldLeak")
         AsyncTask taskSendData = new AsyncTask() {
             @Override
             protected Object doInBackground(Object[] objects) {
@@ -149,11 +148,14 @@ public class Client {
                     }
 
                     if (object instanceof PowerpointData){
+
+                        Log.d(TAG, "send: sended");
                         PowerpointData data = (PowerpointData) object;
                         outputStream.writeUTF("powerpoint");
                         outputStream.writeInt(data.getState());
                         outputStream.writeInt(data.getX());
                         outputStream.writeInt(data.getY());
+
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -161,7 +163,7 @@ public class Client {
                 return null;
             }
         };
-        taskSendData.execute(object);
+        taskSendData.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,object);
     }
 
     public void sendMode(final String mode){

@@ -1,7 +1,7 @@
 package com.xuandq.androidtouchpad.model;
 
 public class PowerpointData {
-    private int state = 0; // 0 - non, 1 - press, 2 - move, 3 - release, 4 - prev, 5 - next
+    private int state = 0; // 0 - non, 1 - press, 2 - move, 3 - release, 4 - prev, 5 - next, 6 - draw, 7 - drag
     private int x;
     private int y;
 

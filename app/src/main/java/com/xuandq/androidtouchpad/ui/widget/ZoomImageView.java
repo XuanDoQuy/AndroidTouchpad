@@ -68,10 +68,14 @@ public class ZoomImageView extends androidx.appcompat.widget.AppCompatImageView 
                 matrix.getValues(m);
                 float x = m[Matrix.MTRANS_X];
                 float y = m[Matrix.MTRANS_Y];
+                float scale = m[Matrix.MSCALE_X];
 
                 Log.d(TAG, "onTouch: x \t " + x);
                 Log.d(TAG, "onTouch: y \t " + y);
                 PointF curr = new PointF(event.getX(), event.getY());
+                Log.d(TAG, "onTouch: currX \t " + curr.x);
+                Log.d(TAG, "onTouch: currY \t " + curr.y);
+                Log.d(TAG, "onTouch: scale \t " + scale);
 
                 switch (event.getAction())
                 {
@@ -84,7 +88,7 @@ public class ZoomImageView extends androidx.appcompat.widget.AppCompatImageView 
                         if (mode == DRAW){
                             xPc = curr.x - x;
                             yPc = curr.y - y;
-                            drawModeListener.onPress(xPc,yPc);
+                            drawModeListener.onPress(xPc / scale,yPc / scale);
                         }
                         break;
                     //when two fingers are touching
@@ -149,7 +153,7 @@ public class ZoomImageView extends androidx.appcompat.widget.AppCompatImageView 
                         } else if (mode == DRAW){
                             xPc = curr.x - x;
                             yPc = curr.y - y;
-                            drawModeListener.onMove(xPc,yPc);
+                            drawModeListener.onMove(xPc / scale,yPc / scale);
                         }
                         break;
                     //first finger is lifted
@@ -165,7 +169,7 @@ public class ZoomImageView extends androidx.appcompat.widget.AppCompatImageView 
                         if (mode == DRAW){
                             xPc = curr.x - x;
                             yPc = curr.y - y;
-                            drawModeListener.onRelease(xPc,yPc);
+                            drawModeListener.onRelease(xPc / scale,yPc /scale);
                         }
                         break;
                     // second finger is lifted
