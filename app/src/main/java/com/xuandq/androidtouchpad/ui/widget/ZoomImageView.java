@@ -2,6 +2,7 @@ package com.xuandq.androidtouchpad.ui.widget;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.PointF;
 import android.util.AttributeSet;
@@ -54,7 +55,6 @@ public class ZoomImageView extends androidx.appcompat.widget.AppCompatImageView 
         mScaleDetector = new ScaleGestureDetector(context, new ScaleListener());
         matrix.setTranslate(1f, 1f);
         m = new float[9];
-        setImageMatrix(matrix);
         setScaleType(ScaleType.MATRIX);
 
         setOnTouchListener(new OnTouchListener()
@@ -319,5 +319,12 @@ public class ZoomImageView extends androidx.appcompat.widget.AppCompatImageView 
         Log.d(TAG, "onMeasure: bottom \t " + bottom);
         Log.d(TAG, "onMeasure: redundantXSpace \t " + redundantXSpace);
         Log.d(TAG, "onMeasure: redundantYSpace \t " + redundantYSpace);
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        canvas.rotate(30, width / 2, height / 2);
+        super.onDraw(canvas);
+
     }
 }
